@@ -1,0 +1,121 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<style>
+    /* Estilos generales */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .detail-container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    h1 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    p {
+        margin-bottom: 10px;
+    }
+    
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    /* Estilos para los botones */
+    .action-button {
+        display: inline-block;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-align: center;
+        text-decoration: none;
+    }
+    
+    .edit-button {
+        background-color: #4CAF50;
+        color: white;
+        padding:10px 20px;
+        border-radius:20px;
+        margin:15px 0px 0px 0px;
+        display: flex;
+        width: 120px;
+    }
+    
+    .edit-button:hover {
+        background-color: #45a049;
+    }
+    
+    .delete-button {
+        background-color: #f44336;
+        color: white;
+        padding:10px 20px;
+        border-radius:20px;
+        margin:15px 0px 0px 0px;
+    }
+    
+    .delete-button:hover {
+        background-color: #da190b;
+    }
+    
+    .back-button {
+        background-color: #007bff;
+        color: white;
+        padding:10px 20px;
+        border-radius:20px;
+        margin:15px 0px 0px 0px;
+    }
+    
+    .back-button:hover {
+        background-color: #0056b3;
+    }
+    
+</style>
+<div class="detail-container">
+    <h1>Detalles de la Denuncia</h1>
+    <p>ID: {{ object.id }}</p>
+    <p>Fecha: {{ object.fecha }}</p>
+    <p>Tipo de Delito: {{ object.tipo_delito }}</p>
+    <p>Descripción: {{ object.descripcion }}</p>
+    <p>Estado: {{ object.estado }}</p>
+    <p>Nombre del Demandante: {{ object.nombre_demandante }}</p>
+    <p>DNI del Demandante: {{ object.dni_demandante }}</p>
+    <p>Barrio: {{ object.barrio }}</p>
+
+    {% if object.documento_adjunto %}
+      <p>Documento Adjunto: <a href="{{ object.documento_adjunto.url }}" target="_blank">Descargar adjunto</a></p>
+    {% else %}
+      <p>Documento Adjunto: No hay archivo adjunto</p>
+    {% endif %}
+
+    <a href="{% url 'denuncia_list' %}" class="back-button">Volver a la lista de denuncias</a>
+
+    {% if can_edit %}
+      <a href="{% url 'denuncia_update' object.pk %}" class="edit-button">Editar Denuncia</a>
+    {% endif %}
+
+    {% if can_delete %}
+      <form action="{% url 'denuncia_delete' object.pk %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="delete-button" onclick="return confirm('¿Estás seguro de que deseas eliminar esta denuncia?')">Eliminar Denuncia</button>
+      </form>
+    {% endif %}
+  </div>
+{% endblock %}

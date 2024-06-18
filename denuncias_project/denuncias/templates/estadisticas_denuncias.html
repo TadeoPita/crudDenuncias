@@ -1,0 +1,27 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Estadísticas de Denuncias{% endblock %}
+
+{% block content %}
+<style>
+    .img-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
+
+
+<h1>Estadísticas de Denuncias</h1>
+<div class="img-container">
+    <h2>Gráfico de Barras</h2>
+    <img src="data:image/png;base64,{{ graphic_bar }}" alt="Gráfico de Barras">
+</div>
+<div class="img-container">
+    <h2>Gráfico de Torta</h2>
+    <img src="data:image/png;base64,{{ graphic_pie }}" alt="Gráfico de Torta">
+</div>
+<div class="img-container">
+    <h2>Mapa de Calor</h2>
+    {{ map_html|safe }}
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!-- denuncias/templates/denuncias/denuncia_list.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Lista de Denuncias</h1>
+  <form method="GET" action="{% url 'denuncia_list' %}">
+      <input type="text" name="q" placeholder="Buscar..." value="{{ request.GET.q }}">
+      <button type="submit">Buscar</button>
+  </form>
+  <ul>
+    {% for denuncia in denuncias %}
+      <li>
+        <a href="{% url 'denuncia_detail' denuncia.pk %}">{{ denuncia.titulo }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_superuser %}
+    <a href="{% url 'denuncia_create' %}">Crear Denuncia</a>
+{% endif %}
+{% endblock %}
