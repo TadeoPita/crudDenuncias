@@ -1,7 +1,6 @@
 {% extends 'base_generic.html' %}
 {% block content %}
 <style>
-    /* Estilos generales */
     body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
@@ -100,22 +99,22 @@
     <p>Barrio: {{ object.barrio }}</p>
 
     {% if object.documento_adjunto %}
-      <p>Documento Adjunto: <a href="{{ object.documento_adjunto.url }}" target="_blank">Descargar adjunto</a></p>
+    <p>Documento Adjunto: <a href="{{ object.documento_adjunto.url }}" target="_blank">Descargar adjunto</a></p>
     {% else %}
-      <p>Documento Adjunto: No hay archivo adjunto</p>
+    <p>Documento Adjunto: No hay archivo adjunto</p>
     {% endif %}
 
     <a href="{% url 'denuncia_list' %}" class="back-button">Volver a la lista de denuncias</a>
 
     {% if can_edit %}
-      <a href="{% url 'denuncia_update' object.pk %}" class="edit-button">Editar Denuncia</a>
+    <a href="{% url 'denuncia_update' object.pk %}" class="edit-button">Editar Denuncia</a>
     {% endif %}
 
     {% if can_delete %}
-      <form action="{% url 'denuncia_delete' object.pk %}" method="post" style="display: inline;">
+    <form action="{% url 'denuncia_delete' object.pk %}" method="post" style="display: inline;">
         {% csrf_token %}
         <button type="submit" class="delete-button" onclick="return confirm('¿Estás seguro de que deseas eliminar esta denuncia?')">Eliminar Denuncia</button>
-      </form>
+    </form>
     {% endif %}
-  </div>
+</div>
 {% endblock %}
