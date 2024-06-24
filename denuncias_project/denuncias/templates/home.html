@@ -3,6 +3,24 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Bienvenido a la aplicación de Denuncias</h1>
+<h1><span id="typed-message"></span></h1>
 <p>Por favor, <a href="{% url 'login' %}">inicia sesión</a> para continuar.</p>
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Configuración de Typed.js
+    var options = {
+        strings: ["Bienvenido a la aplicación de Denuncias", "Por favor, inicia sesión para continuar."],
+        typeSpeed: 50,
+        backSpeed: 25,
+        loop: true
+    };
+
+    var typed = new Typed("#typed-message", options);
+});
+</script>
 {% endblock %}
