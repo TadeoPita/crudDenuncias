@@ -36,7 +36,7 @@ class ExportarDenunciasCSV(View):
 def estadisticas_denuncias(request):
     # Supongamos que obtienes los tipos de delito y la cantidad por tipo
     tipos_delito = ['Mano Armada', 'Fraude', 'Violencia','Secuestro','Extorcion']  # Aquí deberías tener tus tipos de delito como una lista de strings
-    cantidad_por_tipo = [32, 20, 15, 40, 30]  # Aquí deberías tener la cantidad por tipo como una lista de números
+    cantidad_por_tipo = [32, 20, 27, 40, 30]  # Aquí deberías tener la cantidad por tipo como una lista de números
 
     # Gráfico de Barras
     plt.figure(figsize=(10, 5))
