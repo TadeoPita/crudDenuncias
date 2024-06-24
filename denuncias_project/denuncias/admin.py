@@ -1,4 +1,3 @@
-# En denuncias/admin.py
 
 from django.contrib import admin
 from django.contrib.auth.models import Group
@@ -10,7 +9,7 @@ from .models import Denuncia
 
 @admin.register(Denuncia)
 class DenunciaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'fecha', 'tipo_delito', 'estado')  # Ajusta esto según tus necesidades
+    list_display = ('id', 'fecha', 'tipo_delito', 'estado') 
     search_fields = ('id', 'tipo_delito', 'estado')  # Campos de búsqueda
     list_filter = ('estado', 'tipo_delito')  # Filtros laterales
     readonly_fields = ('fecha',)  # Campos solo de lectura

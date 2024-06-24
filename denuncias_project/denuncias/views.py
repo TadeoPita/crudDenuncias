@@ -34,10 +34,10 @@ class ExportarDenunciasCSV(View):
 
 
 def estadisticas_denuncias(request):
-    # Supongamos que obtienes los tipos de delito y la cantidad por tipo
-    tipos_delito = ['Mano Armada', 'Fraude', 'Violencia','Secuestro','Extorcion']  # Aquí deberías tener tus tipos de delito como una lista de strings
-    cantidad_por_tipo = [32, 20, 27, 40, 30]  # Aquí deberías tener la cantidad por tipo como una lista de números
-
+    # Supongamos que obtenemos los tipos de delito y la cantidad por tipo
+    tipos_delito = ['Mano Armada', 'Fraude', 'Violencia','Secuestro','Extorcion'] 
+    cantidad_por_tipo = [32, 20, 27, 40, 30]  
+    
     # Gráfico de Barras
     plt.figure(figsize=(10, 5))
     plt.bar(tipos_delito, cantidad_por_tipo, color='blue')
@@ -141,7 +141,7 @@ class DenunciaDetailView(DetailView):
                 context['can_delete'] = True
             elif user.groups.filter(name='Empleado').exists():
                 context['can_edit'] = True
-                context['can_delete'] = False  # Ajustar según los permisos del empleado
+                context['can_delete'] = False 
             else:
                 context['can_edit'] = False
                 context['can_delete'] = False
@@ -150,7 +150,7 @@ class DenunciaDetailView(DetailView):
             context['can_delete'] = False
         return context
 
-# En DenunciaUpdateView
+
 class DenunciaUpdateView(LoginRequiredMixin, UpdateView):
     model = Denuncia
     form_class = DenunciaForm
